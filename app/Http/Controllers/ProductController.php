@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Http;
 
 class ProductController extends Controller
 {
-    public function show($id)
+    public function index()
     {
-        $product = Http::get("http://api.tu-tienda.com/products/{$id}")->json();
-        return view('product.show', compact('product'));
+        $products = Http::get('https://hardcore-heisenberg.217-76-159-75.plesk.page/api/products')->json();
+        return view('home', compact('products'));
     }
 }
