@@ -20,3 +20,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/viewCart', [App\Http\Controllers\CartController::class, 'viewCart'])->name('viewCart');
+Route::post('/cart/add/{productId}', [App\Http\Controllers\CartController::class, 'addToCart'])->name('cart.add');
+Route::post('/cart/update', [App\Http\Controllers\CartController::class, 'updateQuantity'])->name('cart.update');
+
+Route::post('/cart/remove', [App\Http\Controllers\CartController::class, 'removeFromCart'])->name('cart.remove');
+
+Route::get('/checkout', [App\Http\Controllers\CartController::class, 'checkout'])->name('checkout');
