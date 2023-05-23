@@ -15,12 +15,14 @@
     </thead>
     <tbody>
         @foreach ($purchases as $purchase)
-            <tr>
-                <td>{{ $purchase->id }}</td>
-                <td>{{ $purchase->price }}</td>
-                <td>{{ $purchase->created_at }}</td>
-                
-            </tr>
+            @if(Auth::user()->id === $purchase->user_id)
+                <tr>
+                    <td>{{ $purchase->id }}</td>
+                    <td>{{ $purchase->price }}</td>
+                    <td>{{ $purchase->created_at }}</td>
+                    
+                </tr>
+            @endif
         @endforeach
     </tbody>
 </table>

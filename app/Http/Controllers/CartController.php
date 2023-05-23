@@ -11,6 +11,10 @@ use App\Models\PurchaseHistory;
 
 class CartController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function viewCart()
     {
         $cart = session()->get('cart', []);
