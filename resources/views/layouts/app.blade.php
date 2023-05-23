@@ -59,10 +59,13 @@
                             @endif
                         @else
                             <li>
-                                <a href="{{ route('viewCart') }}" class="btn btn-primary">
+                                <a href="{{ route('viewCart') }}" class="btn btn-primary me-2">
                                     <i class="bi bi-cart"></i>
-
                                 </a>
+                                <a href="{{ route('purchase_history') }}" class="btn btn-secondary ms-2">
+                                    <i class="bi bi-clock-history"></i>
+                                </a>
+
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

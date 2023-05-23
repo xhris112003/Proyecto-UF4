@@ -28,3 +28,5 @@ Route::post('/cart/update', [App\Http\Controllers\CartController::class, 'update
 Route::post('/cart/remove', [App\Http\Controllers\CartController::class, 'removeFromCart'])->name('cart.remove');
 
 Route::get('/checkout', [App\Http\Controllers\CartController::class, 'checkout'])->name('checkout');
+
+Route::get('/history', [App\Http\Controllers\CartController::class, 'purchase_history'])->name('purchase_history');

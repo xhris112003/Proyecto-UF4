@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use App\Models\PurchaseHistory;
+
+
 
 
 class CartController extends Controller
@@ -96,10 +99,31 @@ class CartController extends Controller
     public function checkout()
     {
 
+        // Obtén los detalles de la compra desde el carrito
+        $cart = session()->get('cart');
+
+        // Guarda los detalles de la compra en el historial
+        foreach ($cart as $product) {
+            PurchaseHistory::create([
+                'user_id' => auth()->user()->id, // Si hay un usuario autenticado
+                'quantity' => $product['quantity'],
+                'price' => $product['price'],
+                'created_at' => now(),
+            ]);
+        }
+
         // Limpiar el carrito
         session()->forget('cart');
 
-        return redirect()->route('viewCart')->with('success', '¡Compra realizada con éxito!');
+        return redirect()->route('home')->with('message', '¡Compra realizada con éxito!');
+    }
+
+    public function purchase_history()
+    {
+        $purchases = PurchaseHistory::all();
+
+        return view('view.purchase_history', compact('purchases'));
+
     }
 
 
